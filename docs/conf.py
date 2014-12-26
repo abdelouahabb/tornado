@@ -3,6 +3,8 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(".."))
 import tornado
+from setuptools.command import easy_install
+easy_install.main( ["-U","sphinxjp.themes.basicstrap"] )
 
 master_doc = "index"
 
