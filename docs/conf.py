@@ -4,7 +4,14 @@ import sys
 sys.path.insert(0, os.path.abspath(".."))
 import tornado
 from setuptools.command import easy_install
-easy_install.main( ["-U","sphinxjp.themes.basicstrap"] )
+try:
+    import sphinxjp.themes
+except ImportError:
+    from pkg_resources import get_distribution
+    from setuptools.command import easy_install
+    easy_install.main( ["-U","sphinxjp.themes.basicstrap"] )
+    get_distribution('sphinxjp.themes.basicstrap').activate()
+    import sphinxjp.themes
 
 master_doc = "index"
 
